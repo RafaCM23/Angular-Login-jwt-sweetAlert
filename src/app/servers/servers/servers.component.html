@@ -1,0 +1,49 @@
+
+<div class="row">
+    <div class="col-sm-4">
+      <div class="list-group">
+        <!-- <a href="#" class="list-group-item list-group-item-action" *ngFor="let server of servers">
+          {{ server.name }}
+        </a> -->
+
+                        <!-- PASAR PARÁMETROS CON ROUTERLINK -->
+        <!-- <a href="#" class="list-group-item list-group-item-action" *ngFor="let server of servers"
+        [routerLink]="['/servers', 3, 'edit']" [queryParams]="{allowEdit: '1'}" fragment="loading"> {{ server.name }}</a> -->
+
+        <!-- queryParams espera un objeto JS donde se define un key-value pairs de los parámetros que quermeos añadir-->
+        <!-- al hacer click en cualquier servidor de la lista, la URL se actualiza
+        a http://localhost:4200/servers/3/edit?allowEdit=1. -->
+
+        <!-- la propiedad fragment espera un string.  
+        al hacer click en un servidor de la lista se muestra así:
+        http://localhost:4200/servers/3/edit?allowEdit=1#loading.-->
+
+
+
+                  <!-- PASAR PARÁMETROS DE MANERA PROGRAMÁTICA -->
+
+                  <!-- con los observables queryParams y fragment-->
+
+                  
+        <!-- sustituimos el ID estático por uno dinámico y eliminamos el segmento edit
+        <a href="#" class="list-group-item list-group-item-action" *ngFor="let server of servers"
+        [routerLink]="['/servers', server.id]" [queryParams]="{allowEdit: '1'}" fragment="loading">{{server.name}}</a> -->
+
+
+        <!-- con el allowEdit decidimos quien puede editar o no
+        Vamos a darle la posibilidad de editar al servidor con ID 3, usando un ternary operator -->
+        <a href="#" class="list-group-item list-group-item-action" *ngFor="let server of servers"
+        [routerLink]="['/servers', server.id]" [queryParams]="{allowEdit: server.id === 3 ? '1' : '0'}" fragment="loading">{{server.name}}</a>
+
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <!-- <button class="btn btn-info" (click)="onReload()">Reload Servers</button>
+      <app-edit-server></app-edit-server>
+      <hr>
+      <app-server></app-server> -->
+
+      <!-- para que se carguen las rutas hijas -->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
